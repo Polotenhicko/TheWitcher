@@ -23,3 +23,37 @@
 		menu.classList.toggle('header-active');
 	})
 */
+const getElement = (tagName, classNames) => {
+	const element = document.createElement(tagName);
+	if (classNames) {
+			element.classList.add(...classNames);
+	}
+
+	return element;
+};
+
+const createHeader = (param) => {
+	const header = getElement('header');
+	const container = getElement('div', ['container']);
+	const wrapper = getElement('div', ['header']);
+
+	header.append(container);
+	container.append(wrapper);
+
+	return header;
+};
+
+const movieConstructor = (selector, options) => {
+	const app = document.querySelector(selector);
+
+	if (options.header) {
+			app.append(createHeader(options.header));
+	}
+};
+
+movieConstructor('.app', {
+	title: 'Ведьмак',
+	header: {
+			logo: ''
+	}
+});
